@@ -193,6 +193,9 @@ init()
 
 <template>
     <div class="select-list-big-box">
+        <div class="select-list-label">
+            已选中的员工：
+        </div>
         <div class="select-list">
             <div class="select-item" @click="isSelectClick(item)" v-for="item in internalPersonIdList"
                  :key="item.userId">
@@ -200,13 +203,18 @@ init()
             </div>
         </div>
         <div class="tree-select-box">
-
             <div class="dept">
+                <div class="dept-label">
+                    部门列表：
+                </div>
                 <div class="dept-item" v-for="item in realUseData">
                     <deptItem :item="item" :key="item.id" @node-click="clickDeptItem" @check-click="clickDeptCheck"/>
                 </div>
             </div>
             <div class="user">
+                <div class="user-label">
+                    部门员工：
+                </div>
                 <div class="user-item" :class="[{select:isSelect(item)}]" :key="item.userId"
                      v-for="item in thisDeptUserList"
                      @click="selectUser(item)">
@@ -220,7 +228,16 @@ init()
 
 <style scoped lang="scss">
 
-.select-list-big-box{
+.user-label,
+.dept-label,
+.select-list-label {
+    height: 40px;
+    line-height: 40px;
+    padding-left: 10px;
+    font-weight: bold;
+}
+
+.select-list-big-box {
     border: 1px solid #8a8a8a;
     padding: 20px;
 }
@@ -274,6 +291,8 @@ init()
         flex: 1;
         overflow: auto;
     }
+
+
 
     .user {
         padding: 10px 20px 10px 20px;

@@ -29,32 +29,45 @@ const openAndCloseBtnName = computed(() => {
 
 <template>
     <main>
+        <h1 class="big-title">
+            前端面试题
+        </h1>
         <div class="questions">
             <div class="title">
                 <div style="margin-bottom: 10px;">
-                   1. 有以下两个数组,
+                    1. 有以下两个数组,
                     左边是部门的树状数据，
                     右边是全部的用户的信息，
                     你需要根据这两个数组做一个组件，
                     这个组件的功能和样式就是下面的样子。
                 </div>
                 <div style="margin-bottom: 10px;">
-                   2. 请尽可能详细的讲述你的思路和想法，
+                    2. 请尽可能详细的讲述你的思路和想法，
                     可以提到一些需要注意的地方，
                     可以讲一些细节，
                     比如如何处理这个树状结构。
                 </div>
                 <div style="margin-bottom: 10px;">
-                   3. 下面的组件可以点击，可以选择，可以全选，可以取消全选。
+                    3. 下面的组件可以点击，可以选择，可以全选，可以取消全选。
                     可以选择单个部门，也可以选择多个部门。
                     可以选择单个用户，也可以取消选择单个用户。
                 </div>
             </div>
-            <a @click="openAndCloseQuestions" class="questions-btn">
-                {{ openAndCloseBtnName }}
-            </a>
-            <div v-if="show" class="context">
-                <div class="dept-example">
+        </div>
+        <div class="tree-select-card-box">
+            <tree-select-card
+                v-model:personList="personList"
+                :user-list="userList"
+                :dept-tree="deptTree"
+            ></tree-select-card>
+        </div>
+
+
+        <a @click="openAndCloseQuestions" class="questions-btn">
+            {{ openAndCloseBtnName }}
+        </a>
+        <div v-if="show" class="context">
+            <div class="dept-example">
             <pre>
     [{
         "id": 100,
@@ -79,8 +92,8 @@ const openAndCloseBtnName = computed(() => {
         ]
     }]
             </pre>
-                </div>
-                <div class="user-example">
+            </div>
+            <div class="user-example">
 <pre>
     [
         {
@@ -145,38 +158,47 @@ const openAndCloseBtnName = computed(() => {
         }
     ]
             </pre>
-                </div>
-
             </div>
 
-        </div>
-        <div class="tree-select-card-box">
-            <tree-select-card
-                v-model:personList="personList"
-                :user-list="userList"
-                :dept-tree="deptTree"
-            ></tree-select-card>
         </div>
     </main>
 </template>
 
 <style scoped lang="scss">
+.big-title {
+    font-size: 30px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.questions-btn {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 150px;
+    height: 30px;
+    background-color: #409eff;
+    color: #fff;
+    border-radius: 5px;
+    text-align: center;
+    line-height: 30px;
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+
+
+.context {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+
+}
+
 main {
-    margin: 0  auto 50px;
+    margin: 20px auto 50px;
     width: 80vw;
     user-select: none;
 
-    .questions-btn {
-        width: 150px;
-        height: 30px;
-        background-color: #409eff;
-        color: #fff;
-        border-radius: 5px;
-        text-align: center;
-        line-height: 30px;
-        cursor: pointer;
-        margin-bottom: 20px;
-    }
 
     .tree-select-card-box {
         display: grid;
@@ -193,11 +215,6 @@ main {
             line-height: 1.5;
         }
 
-        .context {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-
-        }
     }
 
 }
