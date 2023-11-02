@@ -36,7 +36,7 @@ function createTree(maxDepth: number, depth = 1): null | Node {
         return null;
     }
 
-    const node = createNode(currentId++, randomChineseName() + '科技');
+    const node = createNode(currentId++, randomChineseName() + '部门');
     const childrenCount = Math.floor(Math.random() * 5) + 1;
 
     for (let i = 0; i < childrenCount; i++) {

@@ -15,15 +15,6 @@ const deptTree = ref<Node[]>([useDeptTree])
 
 const personList = ref<number[]>([])
 
-console.log(deptTree)
-console.log(userList.value)
-
-watch(personList, (newVal) => {
-    console.log(newVal)
-}, {
-    deep: true
-})
-
 const show = ref(true)
 
 const openAndCloseQuestions = () => {
@@ -40,13 +31,24 @@ const openAndCloseBtnName = computed(() => {
     <main>
         <div class="questions">
             <div class="title">
-                你会从两个接口获取到两个数组,
-                左边是部门的树状数据，
-                右边是全部的用户的信息，
-                你需要根据这两个数组做一个组件，
-                这个组件的功能和样式就是下面的样子，
-                并且这个组件的v-model绑定的是选中的用户的数组，
-                请尽可能的讲述实现思路和可能存在的细节问题。
+                <div style="margin-bottom: 10px;">
+                   1. 有以下两个数组,
+                    左边是部门的树状数据，
+                    右边是全部的用户的信息，
+                    你需要根据这两个数组做一个组件，
+                    这个组件的功能和样式就是下面的样子。
+                </div>
+                <div style="margin-bottom: 10px;">
+                   2. 请尽可能详细的讲述你的思路和想法，
+                    可以提到一些需要注意的地方，
+                    可以讲一些细节，
+                    比如如何处理这个树状结构。
+                </div>
+                <div style="margin-bottom: 10px;">
+                   3. 下面的组件可以点击，可以选择，可以全选，可以取消全选。
+                    可以选择单个部门，也可以选择多个部门。
+                    可以选择单个用户，也可以取消选择单个用户。
+                </div>
             </div>
             <a @click="openAndCloseQuestions" class="questions-btn">
                 {{ openAndCloseBtnName }}
@@ -160,8 +162,7 @@ const openAndCloseBtnName = computed(() => {
 
 <style scoped lang="scss">
 main {
-    margin: 50px auto;
-    height: 100vh;
+    margin: 0  auto 50px;
     width: 80vw;
     user-select: none;
 
@@ -189,6 +190,7 @@ main {
             font-size: 20px;
             font-weight: bold;
             margin-bottom: 20px;
+            line-height: 1.5;
         }
 
         .context {
