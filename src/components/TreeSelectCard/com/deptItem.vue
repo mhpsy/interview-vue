@@ -1,20 +1,4 @@
-<template>
-    <div class="dept-item">
-        <div @click.stop="nodeClick" class="label-box" :class="[{'select':item.id===useThisDept.id}]">
-            <three-status-checkbox @click-check-box="$emit('check-click',item)" :value="item.flag"
-                                   v-model="item.flag"></three-status-checkbox>
-            <div class="label">{{ item.label }}</div>
-        </div>
-        <div v-if="item.children && item.children.length" class="children">
-            <dept-item @node-click="$emit('node-click', $event)"
-                       @check-click="$emit('check-click', $event)"
-                       v-for="child in item.children" :key="child.id"
-                       :item="child"></dept-item>
-        </div>
-    </div>
-</template>
-
-<script setup>
+<script setup lang="ts">
 import ThreeStatusCheckbox from "@/components/TreeSelectCard/com/three-status-checkobx.vue";
 import {computed, inject} from "vue";
 
@@ -39,6 +23,22 @@ const useThisDept = computed(() => {
     return thisDept
 })
 </script>
+
+<template>
+    <div class="dept-item">
+        <div @click.stop="nodeClick" class="label-box" :class="[{'select':item.id===useThisDept.id}]">
+            <three-status-checkbox @click-check-box="$emit('check-click',item)" :value="item.flag"
+                                   v-model="item.flag"></three-status-checkbox>
+            <div class="label">{{ item.label }}</div>
+        </div>
+        <div v-if="item.children && item.children.length" class="children">
+            <dept-item @node-click="$emit('node-click', $event)"
+                       @check-click="$emit('check-click', $event)"
+                       v-for="child in item.children" :key="child.id"
+                       :item="child"></dept-item>
+        </div>
+    </div>
+</template>
 
 <style lang="scss" scoped>
 .dept-item {
